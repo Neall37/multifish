@@ -48,8 +48,8 @@ if __name__ == '__main__':
         (True if the model is trained on nucleus segmentation, but cell segmentation is predicted.)   
     """
     label_starfinity, res_dict = model.predict_instances_big(img_normed, axes='ZYX',
-                                                             block_size=,
-                                                             min_overlap=,
+                                                             block_size=20,
+                                                             min_overlap=5,
                                                              n_tiles=n_tiles,
                                                              affinity=True,
                                                              affinity_thresh=0.1,
