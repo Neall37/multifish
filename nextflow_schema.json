@@ -395,7 +395,7 @@
             },
             "fa_icon": "fas fa-layer-group"
         },
-        "segmentation": {
+              "segmentation": {
             "title": "Cell Segmentation",
             "description": "Options for the cell segmentation algorithm (Starfinity)",
             "help_text": "",
@@ -417,12 +417,33 @@
                 "segmentation_cpus": {
                     "type": "integer",
                     "fa_icon": "fas fa-microchip",
-                    "description": "Number of CPU cores for segmentation. Default: 3"
+                    "description": "Number of CPU cores for segmentation. Default: 256"
                 },
                 "segmentation_memory": {
                     "type": "string",
                     "fa_icon": "fas fa-memory",
-                    "description": "Amount of memory for segmentation. Default: 45 G"
+                    "description": "Amount of memory for segmentation. Default: 950 G"
+                },
+                "segmentation_n_workers": {
+                    "type": "integer",
+                    "fa_icon": "fas fa-users",
+                    "description": "Number of workers for segmentation. Default: 4"
+                },
+                "segmentation_batch_size": {
+                    "type": "integer",
+                    "fa_icon": "fas fa-tasks",
+                    "description": "Batch size for segmentation. Default: 4"
+                },
+                "segmentation_threads_per_worker": {
+                    "type": "integer",
+                    "fa_icon": "fas fa-microchip",
+                    "description": "Number of threads per worker for segmentation. Default: 64"
+                },
+                "segmentation_num_blocks": {
+                    "type": "string",
+                    "pattern": "^\\d+,\\d+,\\d+$",
+                    "fa_icon": "fas fa-cube",
+                    "description": "Number of blocks for segmentation. Default: 1,2,2"
                 }
             }
         },
