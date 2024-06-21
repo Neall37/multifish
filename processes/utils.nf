@@ -1,4 +1,4 @@
-/**
+ /**
  *
  * Given a list of directory paths that need to be accessed
  * create mount options for the current container engine.
@@ -15,9 +15,11 @@ def create_container_options(dirList) {
     // Check for existence of /data_test and replace if necessary
     dirs = dirs.collect { it == '/data_test' && !new File(it).exists() ? alternativeDir : it }
 
+    // Ensure unique and valid mount points
+    def uniqueDirs = dirs.findAll { it != null && it != '' && new File(it).exists() }
+
     if (workflow.containerEngine == 'singularity') {
-        dirs
-        .findAll { it != null && it != '' }
+        uniqueDirs
         .inject(params.runtime_opts) { arg, item ->
             if (!arg.contains("-B ${item}")) {
                 "${arg} -B ${item}"
@@ -26,8 +28,7 @@ def create_container_options(dirList) {
             }
         }
     } else if (workflow.containerEngine == 'docker') {
-        dirs
-        .findAll { it != null && it != '' }
+        uniqueDirs
         .inject(params.runtime_opts) { arg, item ->
             if (!arg.contains("-v ${item}:${item}")) {
                 "${arg} -v ${item}:${item}"
