@@ -18,7 +18,6 @@ process predict {
 
     script:
     def output_file = file(output_path)
-    def segmentation_memory_per_worker = (params.segmentation_memory.tokenize()[0].toInteger() / params.segmentation_n_workers).toString() + params.segmentation_memory.tokenize()[1]
 
     args_list = [
         '-i', image_path,
@@ -30,8 +29,8 @@ process predict {
         '--n_workers', params.segmentation_n_workers,
         '--batch_size', params.segmentation_batch_size,
         '--threads_per_worker', params.segmentation_threads_per_worker,
-        '--num_blocks', params.segmentation_num_blocks.join(' '),
-        '--memory_per_worker', segmentation_memory_per_worker
+        '--num_blocks', params.segmentation_num_blocks,
+        '--memory_per_worker', params.segmentation_memory_per_worker
     ]
     args = args_list.collect { it.toString() }.join(' ')
     """
