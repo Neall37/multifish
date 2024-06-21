@@ -110,7 +110,7 @@ def default_mf_params() {
         segmentation_batch_size:  4,
         segmentation_threads_per_worker: 64,
         segmentation_num_blocks: '1 2 2',
-        segmentation_memory_per_worker: '235GB'
+        segmentation_memory_per_worker: '235GB',
 
         // registration params
         registration_fixed_output: 'fixed',
