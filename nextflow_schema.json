@@ -448,7 +448,7 @@
                     "type": "string",
                     "pattern": "^\\d+,\\d+,\\d+$",
                     "fa_icon": "fas fa-cube",
-                    "description": "Number of blocks for segmentation. Default: 1,2,2"
+                    "description": "Number of blocks for segmentation. Default: '1 2 2'"
                 }
             }
         },
