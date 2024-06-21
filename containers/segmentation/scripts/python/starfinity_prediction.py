@@ -83,6 +83,16 @@ def recommended_parameters(model, img, required_block_num, ignore_z=True):
                           ignore_z=ignore_z, context=None)
     return block_size
 
+def str2bool(value):
+    if isinstance(value, bool):
+       return value
+    if value.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif value.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run StarDist3D prediction on a given image')
     parser.add_argument('-i', '--input', type=str, help="z5 input directory", required=True)
@@ -90,7 +100,7 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output', type=str, help="output file", required=True)
     parser.add_argument('-c', '--channel', type=str, help="channel", required=True)
     parser.add_argument('-s', '--scale', type=str, help="scale", required=True)
-    parser.add_argument('--big', action='store_true', help="Enable big image processing with Dask")
+    parser.add_argument('--big', type=str2bool, nargs='?', const=True, default=False, help="Enable big image processing with Dask (true/false)")
     parser.add_argument('--n_workers', type=int, default=4, help="Number of Dask workers")
     parser.add_argument('--batch_size', type=int, default=4, help="Batch size for Dask processing")
     parser.add_argument('--threads_per_worker', type=int, default=64, help="Threads per Dask worker")

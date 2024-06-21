@@ -103,8 +103,13 @@ def default_mf_params() {
         segmentation_output: 'segmentation',
         segmentation_model_dir: "${projectDir}/external-modules/segmentation/model/starfinity",
         segmentation_scale: 's2',
-        segmentation_cpus: 30,
-        segmentation_memory: '220 G',
+        segmentation_cpus: 256,
+        segmentation_memory: '950 G',
+        segmentation_big: 'true',
+        segmentation_n_workers: 4,
+        segmentation_batch_size:  4,
+        segmentation_threads_per_worker: 64,
+        segmentation_num_blocks: 1,2,2,
 
         // registration params
         registration_fixed_output: 'fixed',

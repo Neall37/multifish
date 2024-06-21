@@ -429,6 +429,11 @@
                     "fa_icon": "fas fa-users",
                     "description": "Number of workers for segmentation. Default: 4"
                 },
+                "segmentation_big": {
+                    "type": "string",
+                    "fa_icon": "fas fa-users",
+                    "description": "By turning it off, you're not using blocks. Default: true"
+                },
                 "segmentation_batch_size": {
                     "type": "integer",
                     "fa_icon": "fas fa-tasks",

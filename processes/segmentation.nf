@@ -1,5 +1,6 @@
 process predict {
     label 'withGPU'
+    label 'large'
 
     container { params.segmentation_container }
     cpus { params.segmentation_cpus }
@@ -25,7 +26,7 @@ process predict {
         '-c', ch,
         '-s', scale,
         '-o', output_path,
-        '--big',
+        '--big', params.segmentation_big,
         '--n_workers', params.segmentation_n_workers,
         '--batch_size', params.segmentation_batch_size,
         '--threads_per_worker', params.segmentation_threads_per_worker,
