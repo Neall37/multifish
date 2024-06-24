@@ -6,9 +6,8 @@ channels:
 dependencies:
   - pip
   - numpy
-  - z5py=2.0.5
+  - z5py
   - tensorflow=2.16.1
-  - tensorflow-gpu=2.16.1
   - pip:
     - gputools
     - dask

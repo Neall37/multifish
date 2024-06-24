@@ -1,12 +1,13 @@
 def default_mf_params() {
     def multifish_container_repo = 'public.ecr.aws/janeliascicomp/multifish'
+    def multifish_container_segmentation = 'sw2395/segmentation:latest'
     def default_airlocalize_params = '/app/airlocalize/params/air_localize_default_params.txt'
 
     [
         mfrepo: multifish_container_repo,
         stitching_container: '',
         airlocalize_container: '',
-        segmentation_container: '',
+        segmentation_container: multifish_container_segmentation,
         registration_container: '',
         spots_assignment_container: '',
 
@@ -234,10 +235,11 @@ def airlocalize_container_param(Map ps) {
 def segmentation_container_param(Map ps) {
     def segmentation_container = ps.segmentation_container
     if (!segmentation_container)
-        "${ps.mfrepo}/segmentation:1.0.0"
+        "sw2395/segmentation:latest" // Return your Docker Hub repository here
     else
         segmentation_container
 }
+
 
 def registration_container_param(Map ps) {
     def registration_container = ps.registration_container
