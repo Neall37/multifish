@@ -1,6 +1,5 @@
 def default_mf_params() {
     def multifish_container_repo = 'public.ecr.aws/janeliascicomp/multifish'
-    def multifish_container_segmentation = 'sw2395/segmentation:latest'
     def default_airlocalize_params = '/app/airlocalize/params/air_localize_default_params.txt'
 
     [
@@ -235,7 +234,7 @@ def airlocalize_container_param(Map ps) {
 def segmentation_container_param(Map ps) {
     def segmentation_container = ps.segmentation_container
     if (!segmentation_container)
-        "sw2395/segmentation:latest" // Return your Docker Hub repository here
+        "${ps.mfrepo}/segmentation:1.0.0"
     else
         segmentation_container
 }
