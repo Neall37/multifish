@@ -31,4 +31,4 @@ RUN conda config --set always_yes yes --set changeps1 no && \
 RUN conda install python=3.11
 
 RUN conda env update -n base -f conda-requirements.yml && \
-    rm -f conda-requirements.yml
+    rm -f conda-requirements.yml \
