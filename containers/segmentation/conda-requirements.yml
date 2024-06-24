@@ -11,6 +11,6 @@ dependencies:
   - pip:
     - gputools
     - dask
-    - distributed
+    - dask[distributed]
     - edt
     - git+https://github.com/Neall37/stardist.git
