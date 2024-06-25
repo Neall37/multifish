@@ -19,6 +19,7 @@
     "segmentation_threads_per_worker": 32,
     "segmentation_num_blocks": "122",
     "segmentation_memory_per_worker": "125GB",
+    "segmentation_gpu": null,
     "aff_scale":"s3",
     "def_scale":"s2",
     "registration_xy_stride":256,

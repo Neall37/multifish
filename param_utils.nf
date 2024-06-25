@@ -1,13 +1,12 @@
 def default_mf_params() {
     def multifish_container_repo = 'public.ecr.aws/janeliascicomp/multifish'
-    def multifish_segmentation = 'sw2395/multifish:segmentation2'
     def default_airlocalize_params = '/app/airlocalize/params/air_localize_default_params.txt'
 
     [
         mfrepo: multifish_container_repo,
         stitching_container: '',
         airlocalize_container: '',
-        segmentation_container: multifish_segmentation,
+        segmentation_container: '',
         registration_container: '',
         spots_assignment_container: '',
 
@@ -104,14 +103,16 @@ def default_mf_params() {
         segmentation_output: 'segmentation',
         segmentation_model_dir: "${projectDir}/external-modules/segmentation/my_model",
         segmentation_scale: 's2',
-        segmentation_cpus: 256,
-        segmentation_memory: '950 G',
-        segmentation_big: 'true',
+        segmentation_cpus: 128,
+        segmentation_memory: '500 G',
+        segmentation_gpu: null,
+        segmentation_big: 'false',
+        // Modify following parameters if segmentation_big is set to true
         segmentation_n_workers: 4,
         segmentation_batch_size:  4,
-        segmentation_threads_per_worker: 64,
+        segmentation_threads_per_worker: 32,
         segmentation_num_blocks: '122',
-        segmentation_memory_per_worker: '235GB',
+        segmentation_memory_per_worker: '125GB',
 
         // registration params
         registration_fixed_output: 'fixed',
@@ -235,7 +236,7 @@ def airlocalize_container_param(Map ps) {
 def segmentation_container_param(Map ps) {
     def segmentation_container = ps.segmentation_container
     if (!segmentation_container)
-        "sw2395/multifish:segmentation2"
+        "${ps.mfrepo}/segmentation:1.0.0"
     else
         segmentation_container
 }

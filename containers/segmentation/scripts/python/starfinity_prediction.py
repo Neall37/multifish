@@ -59,19 +59,24 @@ def predict(model, img, big=False, ignore_z=True, n_workers=4, batch_size=4,
 
     return label_starfinity, res["markers"]
 
-def save_results(outdir, label_starfinity):
-    if outdir is not None:
-        print("Saving results...")
-        Path(outdir).mkdir(exist_ok=True, parents=True)
-    imwrite(outdir, label_starfinity[:, np.newaxis].astype(np.uint16), imagej=True, compression='zlib')
 
-def main(img, model, outdir, big=False, ignore_z=True, n_workers=4, batch_size=4, threads_per_worker=64, memory_limit='235GB', block_size=None):
+def save_results(output_path, label_starfinity):
+    if output_path is not None:
+        print("Saving results...")
+        if not os.path.exists(os.path.dirname(output_path)):
+            raise FileNotFoundError(f"Directory does not exist: {os.path.dirname(output_path)}")
+
+    # Save the file
+    imwrite(output_path, label_starfinity[:, np.newaxis].astype(np.uint16), imagej=True, compression='zlib')
+    print(f"File saved successfully: {output_path}")
+
+def main(img, model, output_path, big=False, ignore_z=True, n_workers=4, batch_size=4, threads_per_worker=64, memory_limit='235GB', block_size=None):
     print("Image shape: ", img.shape)
     label_starfinity, label_stardist = predict(model, img, big=big, ignore_z=ignore_z,
                                                n_workers=n_workers, batch_size=batch_size,
                                                threads_per_worker=threads_per_worker, memory_limit=memory_limit,
                                                block_size=block_size)
-    save_results(outdir, label_starfinity)
+    save_results(output_path, label_starfinity)
     print("Done")
 
 def parse_num_blocks(num_blocks_str):
@@ -120,7 +125,10 @@ if __name__ == '__main__':
     im = z5py.File(args.input, use_zarr_format=False)
     img = im[args.channel + '/' + args.scale][:, :, :]
     model = StarDist3D(None, name=args.model, basedir='.')
+    if args.big:
+        block_size = recommended_parameters(model, img, required_block_num=num_blocks, ignore_z=ignore_z)
+    else:
+        block_size = None
 
-    block_size = recommended_parameters(model, img, required_block_num=num_blocks, ignore_z=ignore_z)
     main(img, model, args.output, args.big, ignore_z, args.n_workers, args.batch_size,
          args.threads_per_worker, args.memory_per_worker, block_size)

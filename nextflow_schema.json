@@ -446,9 +446,15 @@
                 },
                 "segmentation_num_blocks": {
                     "type": "string",
-                    "pattern": "^\\d+,\\d+,\\d+$",
+                    "pattern": "zyx",
                     "fa_icon": "fas fa-cube",
-                    "description": "Number of blocks for segmentation. Default: '1 2 2'"
+                    "description": "Number of blocks for segmentation.'zxy' Default: '122'"
+                },
+                "segmentation_gpu": {
+                    "type": "string",
+                    "pattern": "null or 'withGPU'",
+                    "fa_icon": "fas fa-cube",
+                    "description": "Enable gpu or not Default: null"
                 }
             }
         },
