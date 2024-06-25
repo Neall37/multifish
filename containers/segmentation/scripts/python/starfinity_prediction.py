@@ -75,7 +75,7 @@ def main(img, model, outdir, big=False, ignore_z=True, n_workers=4, batch_size=4
     print("Done")
 
 def parse_num_blocks(num_blocks_str):
-    return list(map(int, num_blocks_str.split()))
+    return list(map(int, num_blocks_str))
 
 def recommended_parameters(model, img, required_block_num, ignore_z=True):
     print("Weights loaded successfully")
@@ -104,7 +104,7 @@ if __name__ == '__main__':
     parser.add_argument('--n_workers', type=int, default=4, help="Number of Dask workers")
     parser.add_argument('--batch_size', type=int, default=4, help="Batch size for Dask processing")
     parser.add_argument('--threads_per_worker', type=int, default=64, help="Threads per Dask worker")
-    parser.add_argument('--num_blocks', type=str, default='1 2 2', help="Block size for Dask processing")
+    parser.add_argument('--num_blocks', type=str, default='122', help="Block size for Dask processing")
     parser.add_argument('--memory_per_worker', type=str, default='235GB', help="Block size for Dask processing")
 
     args = parser.parse_args()

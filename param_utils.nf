@@ -1,12 +1,13 @@
 def default_mf_params() {
     def multifish_container_repo = 'public.ecr.aws/janeliascicomp/multifish'
+    def multifish_segmentation = 'sw2395/multifish:segmentation2'
     def default_airlocalize_params = '/app/airlocalize/params/air_localize_default_params.txt'
 
     [
         mfrepo: multifish_container_repo,
         stitching_container: '',
         airlocalize_container: '',
-        segmentation_container: multifish_container_segmentation,
+        segmentation_container: multifish_segmentation,
         registration_container: '',
         spots_assignment_container: '',
 
@@ -51,7 +52,7 @@ def default_mf_params() {
         sleep_between_timeout_checks_seconds: 10,
 
         dapi_channel: 'c2', // DAPI channel used to drive both the segmentation and the registration
-        ref_acq: '', // this is the default parameter for the fixed round and 
+        ref_acq: '', // this is the default parameter for the fixed round and
                      // should be used only when all steps that require a fixed round must be done
         bleed_channel: 'c3',
 
@@ -109,7 +110,7 @@ def default_mf_params() {
         segmentation_n_workers: 4,
         segmentation_batch_size:  4,
         segmentation_threads_per_worker: 64,
-        segmentation_num_blocks: '1 2 2',
+        segmentation_num_blocks: '122',
         segmentation_memory_per_worker: '235GB',
 
         // registration params
@@ -234,7 +235,7 @@ def airlocalize_container_param(Map ps) {
 def segmentation_container_param(Map ps) {
     def segmentation_container = ps.segmentation_container
     if (!segmentation_container)
-        "${ps.mfrepo}/segmentation:1.0.0"
+        "sw2395/multifish:segmentation2"
     else
         segmentation_container
 }
