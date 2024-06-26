@@ -19,7 +19,7 @@ def normalize_image(img):
     print("Normalizing image...")
     return normalize(img, 1, 99.8)
 
-def predict(model, img, big=False, ignore_z=True, n_workers=4, batch_size=4,
+def predict(model, img, big=False, ignore_z=True, n_workers=4, batch_size=4, min_overlap=100,
             threads_per_worker=64, memory_limit='235GB', block_size=None):
     print("Weights loaded successfully")
     print("predicting...")
@@ -45,7 +45,7 @@ def predict(model, img, big=False, ignore_z=True, n_workers=4, batch_size=4,
 
         n_tiles = tuple(int(np.ceil(s / 128)) for s in block_size)
         label_starfinity, res = model.predict_instances_big_dask(
-            cluster, batch_size, img, axes='ZYX', block_size=block_size, min_overlap=[100, 100, 100],
+            cluster, batch_size, img, axes='ZYX', block_size=block_size, min_overlap=min_overlap,
             task_per_worker=batch_size // n_workers, ignore_z=ignore_z, context=None, n_tiles=n_tiles, affinity=True,
             affinity_thresh=0.1, verbose=True
         )
@@ -70,10 +70,13 @@ def save_results(output_path, label_starfinity):
     imwrite(output_path, label_starfinity[:, np.newaxis].astype(np.uint16), imagej=True, compression='zlib')
     print(f"File saved successfully: {output_path}")
 
-def main(img, model, output_path, big=False, ignore_z=True, n_workers=4, batch_size=4, threads_per_worker=64, memory_limit='235GB', block_size=None):
+
+def main(img, model, output_path, big=False, ignore_z=True, n_workers=4,
+         batch_size=4, min_overlap=100, threads_per_worker=64, memory_limit='235GB',
+         block_size=None):
     print("Image shape: ", img.shape)
     label_starfinity, label_stardist = predict(model, img, big=big, ignore_z=ignore_z,
-                                               n_workers=n_workers, batch_size=batch_size,
+                                               n_workers=n_workers, batch_size=batch_size, min_overlap=min_overlap,
                                                threads_per_worker=threads_per_worker, memory_limit=memory_limit,
                                                block_size=block_size)
     save_results(output_path, label_starfinity)
@@ -111,6 +114,7 @@ if __name__ == '__main__':
     parser.add_argument('--threads_per_worker', type=int, default=64, help="Threads per Dask worker")
     parser.add_argument('--num_blocks', type=str, default='122', help="Block size for Dask processing")
     parser.add_argument('--memory_per_worker', type=str, default='235GB', help="Block size for Dask processing")
+    parser.add_argument('--min_overlap', type=int, default=100, help="Minimum overlap, must be bigger than neurons")
 
     args = parser.parse_args()
 
@@ -131,4 +135,4 @@ if __name__ == '__main__':
         block_size = None
 
     main(img, model, args.output, args.big, ignore_z, args.n_workers, args.batch_size,
-         args.threads_per_worker, args.memory_per_worker, block_size)
+         args.min_overlap, args.threads_per_worker, args.memory_per_worker, block_size)

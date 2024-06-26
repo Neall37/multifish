@@ -113,6 +113,7 @@ def default_mf_params() {
         segmentation_threads_per_worker: 32,
         segmentation_num_blocks: '122',
         segmentation_memory_per_worker: '125GB',
+        segmentation_min_overlap: 100,
 
         // registration params
         registration_fixed_output: 'fixed',

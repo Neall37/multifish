@@ -29,7 +29,8 @@ process predict {
         '--batch_size', params.segmentation_batch_size,
         '--threads_per_worker', params.segmentation_threads_per_worker,
         '--num_blocks', params.segmentation_num_blocks,
-        '--memory_per_worker', params.segmentation_memory_per_worker
+        '--memory_per_worker', params.segmentation_memory_per_worker,
+        '--min_overlap', params.segmentation_min_overlap
     ]
     args = args_list.collect { it.toString() }.join(' ')
     """
