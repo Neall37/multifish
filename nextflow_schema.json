@@ -455,6 +455,11 @@
                     "pattern": "null or 'withGPU'",
                     "fa_icon": "fas fa-cube",
                     "description": "Enable gpu or not Default: null"
+                },
+                "segmentation_min_overlap": {
+                    "type": "integer",
+                    "fa_icon": "fas fa-users",
+                    "description": "Minimum overlap between blocks, should be larger than cells."
                 }
             }
         },
