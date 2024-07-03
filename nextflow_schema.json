@@ -422,7 +422,7 @@
                 "segmentation_memory": {
                     "type": "string",
                     "fa_icon": "fas fa-memory",
-                    "description": "Amount of memory for segmentation. Default: 950 G"
+                    "description": "Amount of memory for segmentation. Default: '950 G'"
                 },
                 "segmentation_n_workers": {
                     "type": "integer",
@@ -432,11 +432,11 @@
                 "segmentation_big": {
                     "type": "string",
                     "fa_icon": "fas fa-users",
-                    "description": "By turning it off, you're not using blocks. Default: true"
+                    "description": "By turning it off, you're not using blocks. Default: 'true'"
                 },
                 "segmentation_batch_size": {
                     "type": "integer",
-                    "fa_icon": "fas fa-tasks",
+                    "fa_icon": "fas fa-users",
                     "description": "Batch size for segmentation. Default: 4"
                 },
                 "segmentation_threads_per_worker": {
@@ -447,19 +447,19 @@
                 "segmentation_num_blocks": {
                     "type": "string",
                     "pattern": "zyx",
-                    "fa_icon": "fas fa-cube",
+                    "fa_icon": "fas fa-users",
                     "description": "Number of blocks for segmentation.'zxy' Default: '122'"
                 },
                 "segmentation_gpu": {
                     "type": "string",
                     "pattern": "null or 'withGPU'",
-                    "fa_icon": "fas fa-cube",
-                    "description": "Enable gpu or not Default: null"
+                    "fa_icon": "fas fa-microchip",
+                    "description": "Enable gpu or not. Default: null"
                 },
                 "segmentation_min_overlap": {
                     "type": "integer",
                     "fa_icon": "fas fa-users",
-                    "description": "Minimum overlap between blocks, should be larger than cells."
+                    "description": "Minimum overlap between blocks, should be larger than cells. Default: 100"
                 }
             }
         },
