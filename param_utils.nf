@@ -13,7 +13,7 @@ def default_mf_params() {
         acq_names: '', // this is the default parameter for all acquisitions that must be processed
                        // should only be used when all steps must be performed for all acquisions
         ref_acq: '', // reference image for registration and/or segmentation
-        shared_work_dir: '',
+        shared_work_dir: '$datadir',
         runtime_opts: "-B $datadir -B $TMPDIR",
         profile: "slurm",
 
