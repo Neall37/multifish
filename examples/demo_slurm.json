@@ -1,6 +1,10 @@
 {
     "data_manifest":"demo_medium",
     "acq_names":"LHA3_R3_medium,LHA3_R5_medium",
+    "shared_work_dir": "$datadir",
+    "segmentation_container": "sw2395/multifish:segmentation7",
+    "data_dir": "/local/workdir/multifish/data_test/inputs/",
+    "output_dir": "/local/workdir/multifish/data_test/outputs",
     "ref_acq":"LHA3_R3_medium",
     "channels":"c0,c1,c2,c3",
     "dapi_channel":"c2",

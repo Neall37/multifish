@@ -43,6 +43,13 @@
                     "help_text": "If `shared_work_dir` is defined, this is automatically set to `$shared_work_dir/inputs/model/starfinity`. It is assumed that either the model is already there, or it will be downloaded and unzipped according to the `data_manifest`. Otherwise it defaults to ${projectDir}/external-modules/segmentation/model/starfinity, which is normally configured by setup.sh. ",
                     "hidden": true
                 },
+                "segmentation_container": {
+                    "type": "string",
+                    "fa_icon": "fas fa-folder-open",
+                    "description": "segmentation container from docker hub.",
+                    "help_text": "If not given, it will use original version without dask. ",
+                    "hidden": false
+                },
                 "output_dir": {
                     "type": "string",
                     "description": "Path to the directory containing pipeline outputs. If shared_work_dir is defined, this defaults to $shared_work_dir/outputs.",
