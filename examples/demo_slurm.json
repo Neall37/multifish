@@ -4,7 +4,7 @@
     "segmentation_container": "sw2395/multifish:segmentation7",
     "shared_work_dir":"/local/workdir/multifish/mf_sw2395/shared",
     "data_dir": "/local/workdir/multifish/data_test/inputs/",
-    "output_dir": "/local/workdir/multifish/data_test/outputs",
+    "output_dir": "/local/workdir/multifish/mf_sw2395/data_test/outputs",
     "ref_acq":"LHA3_R3_medium",
     "channels":"c0,c1,c2,c3",
     "dapi_channel":"c2",
