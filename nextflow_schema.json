@@ -47,8 +47,7 @@
                     "type": "string",
                     "fa_icon": "fas fa-folder-open",
                     "description": "segmentation container from docker hub.",
-                    "help_text": "If not given, it will use original version without dask. ",
-                    "hidden": false
+                    "help_text": "If not given, it will use original version without dask. "
                 },
                 "output_dir": {
                     "type": "string",
