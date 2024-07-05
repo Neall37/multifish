@@ -424,19 +424,19 @@
                     "fa_icon": "fas fa-memory",
                     "description": "Amount of memory for segmentation. Default: '950 G'"
                 },
-                "segmentation_n_workers": {
-                    "type": "integer",
-                    "fa_icon": "fas fa-users",
-                    "description": "Number of workers for segmentation. Default: 4"
-                },
                 "segmentation_big": {
                     "type": "string",
-                    "fa_icon": "fas fa-users",
-                    "description": "By turning it off, you're not using blocks. Default: 'true'"
+                    "fa_icon": "fas fa-cube",
+                    "description": "By turning it off, you're not using blocks. Default: 'false'"
+                },
+                "segmentation_n_workers": {
+                    "type": "integer",
+                    "fa_icon": "fas fa-cube",
+                    "description": "Number of workers for segmentation. Default: 4"
                 },
                 "segmentation_batch_size": {
                     "type": "integer",
-                    "fa_icon": "fas fa-users",
+                    "fa_icon": "fas fa-cube",
                     "description": "Batch size for segmentation. Default: 4"
                 },
                 "segmentation_threads_per_worker": {
@@ -444,10 +444,14 @@
                     "fa_icon": "fas fa-microchip",
                     "description": "Number of threads per worker for segmentation. Default: 64"
                 },
+                "segmentation_memory_per_worker": {
+                    "type": "string",
+                    "fa_icon": "fas fa-memory",
+                    "description": "Memory for single worker, should be slightly smaller than segmentation_memory/segmentation_n_workers."
+                },
                 "segmentation_num_blocks": {
                     "type": "string",
-                    "pattern": "zyx",
-                    "fa_icon": "fas fa-users",
+                    "fa_icon": "fas fa-cube",
                     "description": "Number of blocks for segmentation.'zxy' Default: '122'"
                 },
                 "segmentation_gpu": {
@@ -458,7 +462,7 @@
                 },
                 "segmentation_min_overlap": {
                     "type": "integer",
-                    "fa_icon": "fas fa-users",
+                    "fa_icon": "fas fa-cube",
                     "description": "Minimum overlap between blocks, should be larger than cells. Default: 100"
                 }
             }
