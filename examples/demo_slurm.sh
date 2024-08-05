@@ -49,6 +49,6 @@ shift # eat the first argument so that $@ works later
     -profile "slurm"\
     --runtime_opts "-B $datadir -B $TMPDIR" \
     --shared_work_dir "$datadir" "$@"\
-    --segmentation_container "sw2395/multifish:segmentation6"
+    --segmentation_container "sw2395/multifish:segmentation7"
 
 
